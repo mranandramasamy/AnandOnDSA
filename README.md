@@ -9,15 +9,14 @@
 
 > Basic Data Structures
 1. Arrays
-2. Strings
-3. Singly Linked Lists
-4. Doubly Linked Lists
-5. Circular Linked Lists
-6. Stacks
-7. Queues
-8. Hash Table
-9. Hash Maps
-10. Hash Sets
+2. Singly Linked Lists
+3. Doubly Linked Lists
+4. Circular Linked Lists
+5. Stacks
+6. Queues
+7. Hash Table
+8. Hash Maps
+9. Hash Sets
 
 > Advanced Data Structures
 1. Binary Tree
@@ -118,5 +117,32 @@ private static void fibonacciRecursion(int count, int n1, int n2) {
   fibonacciRecursion(count-1, n2, n1+n2);
 }
 ```
+### Tower of Hanoi
 
+### Arrays
+Arrays are sequence of elements based on indexes.
+```java
+import java.util.Arrays;
+
+public class Main {
+  public static void main(String[] args) {
+    int[] data = {1, 6, 8, 2, 0, 9, 4};
+    Arrays.sort(data);
+    System.out.println(Arrays.toString(data));
+    System.out.println(Arrays.binarySearch(data, 8));
+  }
+}
+```
+
+### Dynamic Array ( ArrayList )
+Instead of fixes size. The size is dynamically increased. In Java **ArrayList** provides that support by default.
+Initial **capacity is 10** by default. While adding more data, the size increased, by **grow & shrink** technique.
+```java
+grow = (capcity) -> { capacity*2 };
+shrink = (capcity) -> { capacity/2 };
+```
+We can provide custom capacity size while creating ArrayList in Java
+```java
+ArrayList<Integer> list = new ArrayList<>(20);
+```
 
