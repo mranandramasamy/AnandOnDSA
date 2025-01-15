@@ -95,3 +95,28 @@
 18. Longest Palindromic Substring
 
 
+### Factorial
+Factorial is a simple problem implemented with recursion
+
+```java
+private static int factorial(int n) {
+  if (n<=1) return 1;
+  return n*factorial(n-1);
+}
+```
+### Fibonacci
+Fibonacci is a famous problem based on golden ratio. Where an element is sum of previous two elements.
+0 1 1 2 3 5 8 13 21 34 ...
+```java
+private static void fibonacci(int n) {
+  fibonacciRecursion(n, 0, 1);
+}
+
+private static void fibonacciRecursion(int count, int n1, int n2) {
+  if (count<=0) return;
+  System.out.println(n1);
+  fibonacciRecursion(count-1, n2, n1+n2);
+}
+```
+
+
