@@ -146,3 +146,14 @@ We can provide custom capacity size while creating ArrayList in Java
 ArrayList<Integer> list = new ArrayList<>(20);
 ```
 
+### Singly Linked Lists
+
+```mermaid
+graph LR;
+    A[A.Head :10] --> B[B :20];
+    B --> C[C :30];
+    C --> Tail[D.Tail :null];
+```
+
+### Doubly Linked Lists
+### Circular Linked Lists
