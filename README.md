@@ -147,13 +147,148 @@ ArrayList<Integer> list = new ArrayList<>(20);
 ```
 
 ### Singly Linked Lists
-
+Dynamic Array size. So less memory comparing with Array. Insertion & deletion will be O(1) if we know the pointer location.
+But it carries extra memory for pointers as well. Searching an element will be O(n).
 ```mermaid
 graph LR;
     A[A.Head :10] --> B[B :20];
     B --> C[C :30];
     C --> Tail[D.Tail :null];
 ```
+Data structure goes like below.
+```java
+class Node {
+  int value;
+  Node next;
+  Node(int value) {
+    this.value = value;
+  }
+}
+
+class SingleLinkedList {
+  Node head;
+  Node tail;
+  
+  SingleLinkedList() {}
+  
+  public void addData(int value) {
+    Node newNode = new Node(value);
+    if (this.head == null) {
+      newNode.next = this.tail;
+      this.head = newNode;
+    } else {
+      newNode.next = this.head.next;
+      this.head.next = newNode;
+    }
+  }
+}
+```
+And Java provides default implementation as well.
+```java
+LinkedList<String> ll = new LinkedList<String>();
+ll.add("A");
+ll.remove("A");
+```
+It can act as Stack & Queue also.
+```java
+\\ Stack
+ll.push("S");
+ll.pop();
+
+\\ Queue
+ll.offer("S");
+ll.poll();
+```
+Provides more simple features comparing with Arrays, such as
+```java
+.addFirst("x");
+.addLast("x");
+.removeFirst("x");
+.removeLast("x");
+.getFirst();
+.getLast();
+```
 
 ### Doubly Linked Lists
+```mermaid
+graph LR;
+    A[A.Head :10] <--> B[B :20];
+    B <--> C[C :30];
+    C <--> Tail[D.Tail :null];
+```
+In this structure each node has prev & next pointers addressing to previous and next nodes.
+```java
+class Node {
+  Node prev;
+  int value;
+  Node next;
+  Node(int value) {
+    this.value = value;
+  }
+}
+
+class DoubleLinkedList {
+  Node head;
+  Node tail;
+  
+  DoubleLinkedList() {}
+  
+  public void addData(int value) {
+    Node newNode = new Node(value);
+    if (this.head == null) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
+    }
+  }
+}
+```
+The same LinkedList class in Java provide **bidirection traversal** support for double linked list.
+
+```java
+LinkedList<String> ll = new LinkedList<String>();
+ll.add("A");
+ll.remove("A");
+```
+
 ### Circular Linked Lists
+
+### Stacks
+Last In First Out (LIFO) Structure based.
+```java
+static class Stack {
+    int[] data;
+    int pointer;
+    int capacity = 100;
+    
+    Stack() {
+      data = new int[capacity];
+      pointer = -1;
+    }
+    void push(int value) {
+      if (pointer>=capacity) {
+        capacity *= 2;
+        this.data = Arrays.copyOf(this.data, capacity);
+      }
+      pointer++;
+      data[pointer] = value;
+    }
+    int pop() {
+      if (pointer>0) {
+        int value = this.data[pointer];
+        pointer--;
+        return value;
+      }
+      return -1;
+    }
+    void display() {
+      System.out.println("\nStack:");
+      for (int i=0; i<=this.pointer; i++) {
+        System.out.println(this.data[i]);
+      }
+    }
+  }
+```
