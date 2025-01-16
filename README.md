@@ -296,6 +296,7 @@ static class Stack {
 ### Top-Down (Memoization) vs Bottom-Up (Tabulation)
 **Top-Down (Memoization):**
 This approach involves solving the problem recursively and storing the results of subproblems to avoid redundant computations.
+Its called top-down, because its goes like *bigger to smaller* value through recursion.
 ```java
   private Map<Integer, Integer> memo = new HashMap<>();
 
@@ -314,6 +315,7 @@ This approach involves solving the problem recursively and storing the results o
 
 **Bottom-Up (Tabulation):**
 Its like storing every step into an array, in iterative way. When needed the correspondent value is returned from specific index.
+Its called bottom-up, because its goes like *smaller to bigger* value via iteration.
 ```java
   public int fib(int n) {
     if (n <= 1) {
@@ -331,33 +333,23 @@ Its like storing every step into an array, in iterative way. When needed the cor
 
 ### Optimal Substructure and Overlapping Subproblems
 **Optimal Substructure:** A problem has optimal substructure if an optimal solution can be constructed from optimal solutions of its subproblems.
-**Overlapping Subproblems:** A problem has overlapping subproblems if the same subproblems are solved multiple times.
-
-### Fibonacci Sequence
-**Top-Down (Memoization):**
-```python
-def fib_memo(n, memo={}):
-    if n in memo:
-        return memo[n]
-    if n <= 1:
-        return n
-    memo[n] = fib_memo(n-1, memo) + fib_memo(n-2, memo)
-    return memo[n]
-
-print(fib_memo(10))  # Output: 55
+*Example*
+Let's say, shortest path between **A->C** is **A->B and B->C**. That means shortest path between A->B and B->C also solved while solving A->C.
+```mermaid
+graph LR;
+    A --> B
+    B --> C
+    A --> D
+    D --> E
+    E --> C
 ```
-**Bottom-Up (Tabulation):**
-```python
-def fib_tab(n):
-    if n <= 1:
-        return n
-    dp = [0] * (n + 1)
-    dp[1] = 1
-    for i in range(2, n + 1):
-        dp[i] = dp[i-1] + dp[i-2]
-    return dp[n]
-
-print(fib_tab(10))  # Output: 55
+**Overlapping Subproblems:** A problem has overlapping subproblems if the same subproblems are solved multiple times.
+*Example*
+While solving fib(4), we are calculating fib(3) & fib(2). While checking for fib(3), we may check for fib(2) again. But fib(3) & fib(2) are already solved. This is redundant. Using **Memoization** & **Tabulation** we can achieve this.
+```mermaid
+graph LR;
+    A[fib of 4] --> B[fib of 3] --> C[fib of 2]
+    D[fib of 3 X] --> E[fib of 2 X] --> F[fib of 1]
 ```
 
 ### Longest Common Subsequence (LCS)
