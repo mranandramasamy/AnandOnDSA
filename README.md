@@ -296,29 +296,37 @@ static class Stack {
 ### Top-Down (Memoization) vs Bottom-Up (Tabulation)
 **Top-Down (Memoization):**
 This approach involves solving the problem recursively and storing the results of subproblems to avoid redundant computations.
-```python
-def fib_memo(n, memo={}):
-    if n in memo:
-        return memo[n]
-    if n <= 1:
-        return n
-    memo[n] = fib_memo(n-1, memo) + fib_memo(n-2, memo)
-    return memo[n]
+```java
+  private Map<Integer, Integer> memo = new HashMap<>();
 
-print(fib_memo(10))  # Output: 55
+  public int fib(int n) {
+    if (n <= 1) {
+      return n;
+    }
+    if (memo.containsKey(n)) {
+      return memo.get(n);
+    }
+    int result = fib(n - 1) + fib(n - 2);
+    memo.put(n, result);
+    return result;
+  }
 ```
-**Bottom-Up (Tabulation):**
-```python
-def fib_tab(n):
-    if n <= 1:
-        return n
-    dp = [0] * (n + 1)
-    dp[1] = 1
-    for i in range(2, n + 1):
-        dp[i] = dp[i-1] + dp[i-2]
-    return dp[n]
 
-print(fib_tab(10))  # Output: 55
+**Bottom-Up (Tabulation):**
+Its like storing every step into an array, in iterative way. When needed the correspondent value is returned from specific index.
+```java
+  public int fib(int n) {
+    if (n <= 1) {
+        return n;
+    }
+    int[] dp = new int[n + 1];
+    dp[0] = 0;
+    dp[1] = 1;
+    for (int i = 2; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    return dp[n];
+  }
 ```
 
 ### Optimal Substructure and Overlapping Subproblems
