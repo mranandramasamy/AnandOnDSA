@@ -93,6 +93,28 @@
 17. Longest Palindromic Subsequence
 18. Longest Palindromic Substring
 
+> Dynamic Programming (DP) by Udemy
+1. Minimum cost path problem
+2. Paths in matrix
+3. House robber problem
+4. Longest Common Subsequence (LCS)
+5. Gold mine problem
+6. Edit distance
+7. Ways to climb
+8. Shortest Common Supersequence
+9. Coin change problem
+10. Subset sum problem
+11. Longest increasing subsequence
+12. Ways to decode
+13. Partition problem
+14. Rod cutting problem
+15. Square matrix of one
+16. Minimum cost for tickets
+17. Interleaving string
+18. Sorted vowel strings
+19. Word break problem
+20. Matrix chain problem 
+
 
 ### Factorial
 Factorial is a simple problem implemented with recursion
@@ -622,5 +644,157 @@ def longest_palindromic_substring(s):
                 max_length = length
     return s[start:start + max_length]
 
+
 print(longest_palindromic_substring("babad"))  # Output: "bab" or "aba"
 ```
+
+
+### Paths in matrix
+
+If we start from top (0, 0) position, to reach bottom right (n, m), how many ways we have ?
+considering the blocks we have among the ways.
+
+| O | O | # | O | # |
+| -------- | ------- | ------- | ------- | ------- |
+| O | O | O | O | # |
+| O | O | # | O | O |
+| # | O | O | O | O |
+
+```python
+def move(i, j):
+  if i==n-1 and j==m-1: return 1    # goal cell
+  if mat[i][j]==1: return 0         # blocks
+  if i>m or j>n: return 0           # edge scenario
+  return move(i+1, j) + move(i, j+1)
+```
+
+### House robber problem
+A thief trying to rob houses in a street. Security system will detect & warn if any adjacent houses of robbed. Robber to make sure to collect most possible from houses which aren't adjacent.
+| 2 | 10 | 3 | 6 | 8 | 1 | 7 |
+| --- | --- | --- | --- | --- | --- | --- |
+
+The solution is
+| 2 | <10> | 3 | 6 | <8> | 1 | <7> |
+| --- | --- | --- | --- | --- | --- | --- |
+
+```python
+def rob(i):
+  if i>n-1: return 0
+  return max(
+    rob(i+1),
+    rob(i+2) + mat[i]
+  )
+```
+
+### Longest Common Subsequence (LCS)
+
+s1 = __ab__ da __c__ b __a__ b
+s2 = __a__ ce __b__ f __ca__
+
+And the answer is 
+```python
+"abca"
+```
+```python
+def move(i, j):
+  if i>n-1 or j>m-1: return 0
+  if s1[i]==s2[j]:
+    return move(i+1, j+1)+1
+  return max( move(i+1, j), move(i, j+1) )
+```
+
+### Gold mine problem
+Start from anywhere on the top row. And move only to bottom-right or just-bottom or bottom-left. Find the path which yields maximum mining.
+
+| 3 | 2 | 12 | 15 | 10 |
+| -------- | ------- | ------- | ------- | ------- |
+| 6 | 19 | 7 | 11 | 17 |
+| 8 | 5 | 12 | 32 | 21 |
+| 3 | 20 | 2 | 9 | 7 |
+
+The maximum path is,
+
+| 3 | 2 | 12 | <15> | 10 |
+| -------- | ------- | ------- | ------- | ------- |
+| 6 | 19 | 7 | 11 | <17> |
+| 8 | 5 | 12 | <32> | 21 |
+| 3 | 20 | 2 | <9> | 7 |
+
+```python
+def move(i, j):
+  if i>n-1 or j>m-1 or j<0: return 0    # edge case
+  if i==n-1: return mine[i][j]          # edge case.. last row
+  return mine[i][j] + max( move(i+1, j),
+            max( move(i+1, j+1), move(i+1, j-1) )
+        )
+```
+
+### Edit distance
+
+
+### Ways to climb
+
+| Jumps | 2 | 4 | 5 | 8 |
+| -------- | ------- | ------- | ------- | ------- |
+
+And n=10
+
+__Output: 11__
+
+```python
+def move(i, moved):
+  if moved==n: return 1
+  if i>length-1 or moved>n: return 0
+  return max(
+    move(i,   moved+j[i]),
+    move(i+1, moved+j[i])
+  )
+```
+
+
+### Shortest Common Supersequence
+
+
+### Coin change problem
+
+
+### Subset sum problem
+
+
+### Longest increasing subsequence
+
+
+### Ways to decode
+
+
+### Partition problem
+
+
+### Rod cutting problem
+
+
+### Square matrix of one
+
+
+### Minimum cost for tickets
+
+
+### Interleaving string
+
+
+### Sorted vowel strings
+
+
+### Word break problem
+
+
+### Matrix chain problem 
+
+
+
+
+
+
+
+
+
