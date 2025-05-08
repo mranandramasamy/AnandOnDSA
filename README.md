@@ -735,7 +735,7 @@ def move(i, j):
 ### Ways to climb
 
 | Jumps | 2 | 4 | 5 | 8 |
-| -------- | ------- | ------- | ------- | ------- |
+| -------- | -------- | -------- | -------- | -------- |
 
 And n=10
 
@@ -756,6 +756,45 @@ def move(i, moved):
 
 
 ### Coin change problem
+
+| Coins | 1 | 20 | 25 |
+| -------- | -------- | -------- | -------- |
+
+Amount = 80
+
+Here, the greedy solution **25+25+25+25+1+1+1+1+1** is not giving minimal number of coins. The Dynamic Programming solution is **20+20+20+20**.
+
+```python
+def get_coins(amount):
+  if amount==0: return 0
+  min_coins = 'infi'
+  for coin in coins:
+    if (amount-coin)>=0:
+      min_coins = min( min_coins, 1+get_Coins(amount-coin) )
+  return min_coins
+```
+
+### 0-1 knapsack problem
+
+| values | 20 | 30 | 15 | 25 | 10 |
+| -------- | -------- | -------- | -------- | -------- | -------- |
+| weights | 6 | 13 | 5 | 10 | 3 |
+
+k = 20
+
+The goal is to obtain maximum amount of value covering the not greater than k amount of weight.
+
+```python
+def knapsack(i, weight):
+  if weight==0: return 0
+  if weights[i]>weight: return knapsack(i+1, weight)
+  return max(
+    values[i]+knapsack(i+1, weight-weights[i]),
+    knapsack(i+1, weight)
+  )
+
+knapsack(0, k)
+```
 
 
 ### Subset sum problem
