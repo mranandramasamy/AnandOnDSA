@@ -752,7 +752,28 @@ def move(i, moved):
 ```
 
 
-### Shortest Common Supersequence
+### Shortest Common Supersequence ( SCS )
+
+Let's say
+s1 = "abdacbab"
+s2 = "acebfca"
+
+The SCS would be like, **abdacebfcab**
+
+```python
+def scs(s1, s2, i=0, j=0):
+  if i==len(s1):
+    return len(s2)-j
+  elif j==len(s2):
+    return len(s1)-i
+  elif s1[i]==s2[j]:
+    return 1+scs(s1, s2, i+1, j+1)
+  else:
+    return 1+min(
+      scs(s1, s2, i+1, j),
+      scs(s1, s2, i, j+1)
+    )
+```
 
 
 ### Coin change problem
@@ -799,6 +820,19 @@ knapsack(0, k)
 
 ### Subset sum problem
 
+Array = [1, 2, 3, 1, 4]
+k = 6
+The subsets, which gonna give sum 6 are,
+[1, 2, 3], [1, 1, 4], [2, 3, 1], [2, 4]
+
+So, the answer is **4**
+
+```python
+def subset(k, i=0):
+  if k==0: return 1
+  elif i==len(arr) or k<0: return 0
+  return subsets(k-arr[i], i+1) + subsets(k, i+1)
+```
 
 ### Longest increasing subsequence
 
