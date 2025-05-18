@@ -907,7 +907,7 @@ Find the area of the greatest square submatrix full of ones.
 Matrix,
 
 | 0 | 0 | 1 | 1 | 1 | 0 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- | -------- |
 | 1 | 0 | 1 | 1 | 1 | 1 |
 | 0 | 1 | 1 | 1 | 1 | 0 |
 | 1 | 1 | 1 | 1 | 0 | 1 |
@@ -916,17 +916,76 @@ Matrix,
 Here, the maximum area it covers is **9**, as per below output.
 
 | 0 | 0 | **1** | **1** | **1** | 0 |
-| -------- | -------- | -------- | -------- |
+| -------- | -------- | -------- | -------- | -------- | -------- |
 | 1 | 0 | **1** | **1** | **1** | 1 |
 | 0 | 1 | **1** | **1** | **1** | 0 |
 | 1 | 1 | 1 | 1 | 0 | 1 |
 | 0 | 1 | 0 | 1 | 1 | 1 |
 
-### Minimum cost for tickets
+```python
+def rec(matrix, i, j):
+  if i<0 or j<0 or matrix[i][j]==0: return 0
+  else:
+    return 1+min(
+            rec(matrix, i-1, j),
+            rec(matrix, i, j-1),
+            rec(matrix, i-1, j-1)
+          )
 
+def square(matrix):
+  n, m = len(matrix), len(matrix[0])
+  max_size = 0
+  for i in range(n):
+    for j in range(m):
+      max_size = max(max_size, rec(matrix, i, j))
+  return max_size**2
+```
+
+### Minimum cost for tickets
+train_days = [1, 3, 8, 9, 22, 23, 28, 31]
+costs = [4, 10, 25]
+n = 32
+days = [1, 7, 30] # its constant
+
+| 0 | 1* | 2 | 3*| 4 | 5..7 | 8* | 9* | 10..21 | 22* | 23* | 24..27 | 28* | 29| 30 | 31* |
+| ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+
+Best way is to to buy,
+1-day ticket [cost-4] = [days 1]
+7-day ticket [cost-7] = [days 3, 8, 9]
+7-day ticket [cost-7] = [days 22, 23, 28]
+1-day ticket [cost-4] = [days 31]
+
+Total cost -> **28**
+
+```python
+def cost(n, day=0):
+  if day>=n: return 0
+  elif day not in train_days:
+    return cost(n, day+1)
+  else:
+    return min(
+          costs[0] + cost(n, day+1),
+          costs[1] + cost(n, day+7),
+          costs[2] + cost(n, day+30)
+        )
+```
 
 ### Interleaving string
+s1 = "aabcc"
+s2 = "dbbca"
 
+s3 = "aadbbcbcac"
+
+```python
+def move(i, j):
+  if len(s1)+len(s2) != len(s3): return False
+  if i==len(s1) and j==len(s2): return True
+  else:
+    check_s1 = i<len(s1) and s1[i]==s3[i+j] and move(i+1, j)
+    check_s2 = j<len(s2) and s2[j]==s3[i+j] and move(i, j+1)
+    return check_s1 or check_s2
+```
 
 ### Sorted vowel strings
 
