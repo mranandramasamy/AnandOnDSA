@@ -731,6 +731,25 @@ def move(i, j):
 
 ### Edit distance
 
+word1 = "inside"
+word2 = "index"
+
+Operations allowed
+1. delete a character
+2. insert a character
+3. swap a character
+
+```python
+def dist(i=0, j=0):
+  if i==len(word1): return len(word2)-j
+  elif j==len(word2): return len(word1)-i
+  elif word1[i]==word2[j]:
+    return dist(i+1, j+1)
+  else:
+    return 1+min(
+            dist(i+1, j), dist(i, j+1), dist(i+1, j+1)
+          )
+```
 
 ### Ways to climb
 
@@ -1016,9 +1035,6 @@ def word_break( i=0):
         return True
   return False
 ```
-
-
-### Matrix chain problem 
 
 
 
