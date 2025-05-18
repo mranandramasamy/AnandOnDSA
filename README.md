@@ -989,8 +989,33 @@ def move(i, j):
 
 ### Sorted vowel strings
 
+```python
+def count(n, last=""):
+  if n==0: return 1
+  else:
+    nb = 0
+    for vowel in ["a", "e", "i", "o", "u"]:
+      if last <= vowel:
+        nb += count(n-1, vowel)
+    return nb
+```
+
 
 ### Word break problem
+
+s = "catsanddogsareanimals"
+words = ["cats", "dogs", "sand", "and", "cat", "mals", "san", "dogs", "are", "animal", "ani", "og", "sar"]
+
+```python
+def word_break( i=0):
+  if i==len(s)
+    return True
+  else:
+    for word in words:
+      if word == s[i:i+len(word)] and word_break(i+len(word)):
+        return True
+  return False
+```
 
 
 ### Matrix chain problem 
