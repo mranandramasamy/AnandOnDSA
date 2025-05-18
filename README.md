@@ -108,7 +108,7 @@
 12. Ways to decode
 13. Partition problem
 14. Rod cutting problem
-15. Square matrix of one
+15. Square matrix of ones
 16. Minimum cost for tickets
 17. Interleaving string
 18. Sorted vowel strings
@@ -809,10 +809,11 @@ The goal is to obtain maximum amount of value covering the not greater than k am
 def knapsack(i, weight):
   if weight==0: return 0
   if weights[i]>weight: return knapsack(i+1, weight)
-  return max(
-    values[i]+knapsack(i+1, weight-weights[i]),
-    knapsack(i+1, weight)
-  )
+  else :
+    return max(
+        values[i]+knapsack(i+1, weight-weights[i]),
+        knapsack(i+1, weight)
+      )
 
 knapsack(0, k)
 ```
@@ -834,20 +835,92 @@ def subset(k, i=0):
   return subsets(k-arr[i], i+1) + subsets(k, i+1)
 ```
 
-### Longest increasing subsequence
+### Longest increasing subsequence ( LIS )
 
+```python
+def lis(i=0, prev=float("-inf")):
+  if i==len(arr): return 0
+  elif arr[i]<=prev: return lis(i+1, prev)
+  else:
+    return max(
+      1+lis(i+1, arr[i]),
+      lis(i+1, prev)
+    )
+```
 
 ### Ways to decode
 
+If numbers are assigned to alphabets as,
+1->A, 2->B, 3->C, 4->D, 5->E,.. 25->Y, 26->Z
+
+Then there are **4** ways to decode below series of numbers.
+s = "512810120129"
+
+5 1 2 8 10 1 20 1 2 9
+5 1 2 8 10 1 20 12 9
+5 12 8 10 1 20 1 2 9
+5 12 8 10 1 20 12 9
+
+```python
+def ways(s, i=0):
+  if i==len(s): return 1
+  elif s[i]=="0": return 0
+  elif i+1 < len(s) and "10"<=s[i]+s[i+1]<="26":
+    return ways(s, i+1)+ways(s, i+2)
+  else:
+    return ways(s, i+1)
+```
 
 ### Partition problem
+Check if we get two subset from an array, with same sum of subsets. 
+
+```python
+def partition(i=0, sum1=0, sum2=0):
+  if i==len(arr): return sum1==sum2
+  else:
+    return partition(i+1, sum1+arr[i], sum2) or
+           partition(i+1, sum1, sum2+arr[i])
+```
 
 
 ### Rod cutting problem
+Let's says there is a rod with length 8
+We want to cut that int pieces, so that each piece price will maxmise the whole price.
+prices = [0, 1, 3, 5, 6, 7, 9, 10, 11]
+
+Output will be **13**, as we can split 8 into -> 2+3+3
+On the index based, we will get maximum price,
+prices[2]+prices[3]+prices[3] => 3+5+5 => **13**
+
+```python
+def rod(prices, n):
+  max price = 0
+  for length in range(1, n+1):
+    max_price = max(max_price,
+                    prices[length]+rod(prices, n-length))
+  return max_price
+```
 
 
-### Square matrix of one
+### Square matrix of ones
+Find the area of the greatest square submatrix full of ones.
+Matrix,
 
+| 0 | 0 | 1 | 1 | 1 | 0 |
+| -------- | -------- | -------- | -------- |
+| 1 | 0 | 1 | 1 | 1 | 1 |
+| 0 | 1 | 1 | 1 | 1 | 0 |
+| 1 | 1 | 1 | 1 | 0 | 1 |
+| 0 | 1 | 0 | 1 | 1 | 1 |
+
+Here, the maximum area it covers is **9**, as per below output.
+
+| 0 | 0 | **1** | **1** | **1** | 0 |
+| -------- | -------- | -------- | -------- |
+| 1 | 0 | **1** | **1** | **1** | 1 |
+| 0 | 1 | **1** | **1** | **1** | 0 |
+| 1 | 1 | 1 | 1 | 0 | 1 |
+| 0 | 1 | 0 | 1 | 1 | 1 |
 
 ### Minimum cost for tickets
 
