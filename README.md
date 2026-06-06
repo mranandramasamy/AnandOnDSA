@@ -134,7 +134,11 @@
 14. Backtracking
 15. DP patterns
 
-
+> Other things to learn
+1. Game of Life
+2. A* algorithm
+3. Customizable Contraction Hierarchies
+4. Markov chain
 
 
 
