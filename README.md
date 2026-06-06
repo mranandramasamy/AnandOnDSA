@@ -95,7 +95,7 @@
 19. Word break problem
 20. Matrix chain problem
 
-> Dynamic Programming Patterns by **algomaster.io**  https://blog.algomaster.io/p/20-patterns-to-master-dynamic-programming
+> Dynamic Programming Patterns by **algomaster.io**  [https://blog.algomaster.io/p/20-patterns-to-master-dynamic-programming](https://blog.algomaster.io/p/20-patterns-to-master-dynamic-programming)
 1. Fibonacci sequence
 2. Kadane's algorithm
 3. 0/1 knapsack
@@ -117,7 +117,7 @@
 19. Probability DP
 20. State machine DP
 
-> Leetcode Patterns by **algomaster.io**  https://blog.algomaster.io/p/15-leetcode-patterns
+> Leetcode Patterns by **algomaster.io**  [https://blog.algomaster.io/p/15-leetcode-patterns](https://blog.algomaster.io/p/15-leetcode-patterns)
 1. Prefix sum
 2. two pointers
 3. Sliding window
