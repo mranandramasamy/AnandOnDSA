@@ -93,8 +93,46 @@
 17. Interleaving string
 18. Sorted vowel strings
 19. Word break problem
-20. Matrix chain problem 
+20. Matrix chain problem
 
+> Dynamic Programming Patterns by **algomaster.io**  https://blog.algomaster.io/p/20-patterns-to-master-dynamic-programming
+1. Fibonacci sequence
+2. Kadane's algorithm
+3. 0/1 knapsack
+4. Unbounded knapsack
+5. LCS Longest Common Subsequence
+6. LIS Longest Increasing Subsequence
+7. Palindromic sequence
+8. Edit distance
+9. Subset sum
+10. String partition
+11. Catalon numbers
+12. Matrix chain multiplication
+13. Count distinct ways
+14. DP on Grids
+15. DP on Trees
+16. DP on Graphs
+17. Digit DP
+18. Bitmasking DP
+19. Probability DP
+20. State machine DP
+
+> Leetcode Patterns by **algomaster.io**  https://blog.algomaster.io/p/15-leetcode-patterns
+1. Prefix sum
+2. two pointers
+3. Sliding window
+4. Fast & Slow pointers
+5. LinkedList in-place reversal
+6. Monotonic stack
+7. Top 'K' elements
+8. Overlapping intervals
+9. Modified binary search
+10. Binary tree traversal
+11. DFS Depth First Search
+12. BFS Breadth First Search
+13. Matrix traversal
+14. Backtracking
+15. DP patterns
 
 ### Factorial
 Factorial is a simple problem implemented with recursion
